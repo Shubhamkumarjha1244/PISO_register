@@ -21,27 +21,27 @@
 
 
 module sixteen_bit_PISO_register(clk,inn_out,inn0,inn1,inn2,inn3,inn4,
-inn5,inn6,inn7,inn8,inn9,inn10,inn11,inn12,inn13,inn14,inn15,out,mem);
+inn5,inn6,inn7,inn8,inn9,inn10,inn11,inn12,inn13,inn14,inn15,out);
 
-input clk,inn_out; //inn_out 1 pe data store hoga & 0 pe out hoga
-
+input clk,inn_out;                              //inn_out 1 pe data store hoga & 0 pe out hoga
 input inn0,inn1,inn2,inn3,inn4,inn5,inn6,inn7,inn8,inn9,inn10,inn11,inn12,inn13,inn14,inn15;
+
 output reg out;
 
-output reg[15:0] mem;
+reg[15:0] mem;
 
- always @(posedge clk)
+always @(posedge clk)
     if(~inn_out)
         begin
-        mem[0]<=inn0;mem[1]<=inn1;mem[2]<=inn2;mem[3]<=inn3;
-        mem[4]<=inn4;mem[5]<=inn5;mem[6]<=inn6;mem[7]<=inn7;
-        mem[8]<=inn8;mem[9]<=inn9;mem[10]<=inn10;mem[11]<=inn11;
-        mem[12]<=inn12;mem[13]<=inn13;mem[14]<=inn14;mem[15]<=inn15;
+            mem[0]<=inn0;mem[1]<=inn1;mem[2]<=inn2;mem[3]<=inn3;
+            mem[4]<=inn4;mem[5]<=inn5;mem[6]<=inn6;mem[7]<=inn7;
+            mem[8]<=inn8;mem[9]<=inn9;mem[10]<=inn10;mem[11]<=inn11;
+            mem[12]<=inn12;mem[13]<=inn13;mem[14]<=inn14;mem[15]<=inn15;
         end
     else
         begin
-        out<= mem[0];
-        mem<= mem<<1;
+            out<= mem[15];
+            mem<= mem<<1;
         end
         
 endmodule
